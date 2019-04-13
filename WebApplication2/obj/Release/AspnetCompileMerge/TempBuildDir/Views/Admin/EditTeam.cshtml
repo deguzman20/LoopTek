@@ -1,0 +1,68 @@
+﻿@model WebApplication2.Models.DTO.TeamViewModel
+
+@{
+    ViewBag.Title = "EditTeam";
+}
+
+<h4>Edit Member</h4>
+
+
+@using (Html.BeginForm("EditTeam", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <input type="text" name="team.per.ID" value="@Model.per.ID" style="visibility:hidden" />
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Name</label>
+        <div class="col-md-10">
+            <input type="text" name="team.per.Name" value="@Model.per.Name" class="form-control" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            Picture</label>
+            <div class="col-md-10">
+                <img src="@Model.per.ImageLocation" width="50px" height="50px" />
+
+            </div>
+</div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Edit Picture</label>
+        <div class="col-md-10">
+            <input type="file" name="team.FileMain" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Email</label>
+        <div class="col-md-10">
+            <input type="text" name="team.per.Email" value="@Model.per.Email" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Position</label>
+        <div class="col-md-10">
+            <input type="text" name="team.per.Position" value="@Model.per.Position" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "team")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

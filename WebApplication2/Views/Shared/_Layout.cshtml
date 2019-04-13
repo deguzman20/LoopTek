@@ -1,0 +1,64 @@
+﻿﻿
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop Tek</title>
+    @Styles.Render("~/Content/css")
+    <title>Loop it Solution</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="~/Images/loop-5.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="~/Images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Images/apple-touch-icon-114x114.png">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/niv/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome/css/font-awesome.css">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/niv/style.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/nivo-lightbox/default.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <script type="text/javascript" src="~/Scripts/newScript/jquery.1.11.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/newScript/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/newScript/SmoothScroll.js"></script>
+    <script type="text/javascript" src="~/Scripts/newScript/nivo-lightbox.js"></script>
+    <script type="text/javascript" src="~/Scripts/newScript/jqBootstrapValidation.js"></script>
+    <script type="text/javascript" src="~/Scripts/newScript/contact_me.js"></script>
+    <script type="text/javascript" src="~/Scripts/newScript/main.js"></script>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+    <nav id="menu" class="navbar navbar-default navbar-fixed-top" style="background-color:#1F1933">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand page-scroll" href="#page-top" id="logo">
+                    <img src="~/Images/loop-5.png" width="80">
+                </a>
+                <a href="" style="position:relative;top:20px;font-size:20px;font-weight:bold" id="name"><span style="color:white">Loop</span> <span style="color:#47b5c2">Tek</span></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about" class="page-scroll" style="color:lightgray">About</a></li>
+                    <li><a href="#services" class="page-scroll" style="color:lightgray">Services</a></li>
+                    <li><a href="@Url.Action("index","projects")" class="page-scroll" style="color:lightgray">Projects</a></li>
+                    <li><a href="#team" class="page-scroll" style="color:lightgray">Team</a></li>
+                    <li><a href="#contact" class="page-scroll" style="color:lightgray">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    <div id="footer" style="background-color:#2F2B3C">
+        <div class="container text-center">
+            <p style="color:white">Loop<span style="color: #53bbc6 !important;">Tek</span> IT Solution © 2018</p>
+        </div>
+    </div>
+
+</body>
+

@@ -1,0 +1,59 @@
+﻿@model WebApplication2.Models.Entities.Category
+
+@{
+    ViewBag.Title = "AddService";
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "ServicesList", null,new { @style = "text-decoration:none;background-color:#303c53;color:white", @class="btn"})
+</div>
+<br/><br/>
+<h2>Add Service</h2>
+
+@using (Html.BeginForm("AddService", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Banner</label>
+        <div class="col-md-10">
+            <input type="file" class="form-control" name="BannerLocation" />
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Icon</label>
+        <div class="col-md-10">
+            <input type="file" class="form-control" name="IconLocation" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-4">
+            <input type="submit" value="Create" class="btn pull-right" style="position:relative;left:19.5%;background-color:#47b5c2;color:white" />
+        </div>
+    </div>
+</div>
+}
+

@@ -1,0 +1,319 @@
+﻿@model WebApplication2.Models.DTO.HomeViewModel
+<header id="header">
+                    <div id="myCarousel" class="carousel slide carousel-content" style="height:550px;" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators" style="z-index:900">
+                            @if (Model.images != null && Model.images.Count() > 0)
+                            {
+                                for (int i = 0; i < Model.images.Count(); i++)
+                                {
+                                    <li data-target="#myCarousel" data-slide-to="@i"></li>
+                                }
+                            }
+                            else
+                            {
+                                <li data-target="#myCarousel" data-slide-to="0"></li>
+                            }
+
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner carousel-content" style="width:100%; height: 550px;">
+                            @if (Model.images != null && Model.images.Count() > 0)
+                            {
+                                for (int i = 0; i < Model.images.Count(); i++)
+                                {
+                                    <div class="item @(i == 0 ? "active" : "") ">
+                                        <img src="@Model.images[i].Path" style="width:100%; height:550px" class="carousel-content" alt="@Model.images[i].Name">
+
+                                    </div>
+                                }   
+                            }
+                            else
+                            {
+                                <div class="item active">
+                                    <img src="~/Images/games/bannergame.jpg" alt="New York">
+                                </div>
+
+                            }
+
+                        </div>
+
+                        <!-- Left and right controls -->
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="z-index:900">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next" style="z-index:900">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+                <div style="position:absolute;top:0px;width:100%;">
+                    <div class="col-md-8 col-md-offset-2 intro-text" style="padding-top:350px;">
+                        <h1 style="color:#@Model.content.loopcolor">Loop<span style="color: #@Model.content.tekcolor !important;"> Tek</span><span></span></h1>
+                        @*#53bbc6*@ 
+                        <br>
+                        <!--  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sed commodo nibh ante facilisis bibendum.</p> -->
+                        <a href="#features" class="btn btn-custom btn-lg page-scroll">Learn More</a>
+                    </div>
+                </div>
+</header>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-6"> <img src="@Model.content.aboutImage" class="img-responsive" alt=""> </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="about-text">
+                    <h2>About Us</h2>
+                    <p>@Model.content.AboutUs</p>
+                    <div class="list-style">
+
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <h3>MISSION</h3>
+
+                            <p>
+                                @Model.content.Mission
+                            </p>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <h3>VISION</h3>
+
+                            <p>
+                                @Model.content.Vision
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="services" class="text-center">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Services</h2>
+        </div>
+        <div class="row">
+            @if (Model.services != null && Model.services.Count() > 0)
+            {
+                <center>
+                    @foreach (var service in Model.services)
+                    {
+                        <div style="width:120px;margin:0px 20px;display:inline-block">
+                            <a href="/projects/viewapps?catID=@service.ID"><img src="@service.IconLink" style="width:90px;height:90px;"></a>
+                            <div class="service-desc">
+                                <h6>@service.Name</h6>
+                            </div>
+                        </div>
+                    }
+                </center>
+            }
+            else
+            {
+
+                <div class="col-md-3">
+                    <i class="fa fa-mobile"></i>
+                    <div class="service-desc">
+                        <h3>Mobile App</h3>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <i class="fa fa-desktop"></i>
+                    <div class="service-desc">
+                        <h3>Desktop App</h3>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <i class="fa fa-gamepad"></i>
+                    <div class="service-desc">
+                        <h3>Game App</h3>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <i class="fa fa-gamepad"></i>
+                    <div class="service-desc">
+                        <h3>Web App</h3>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<div id="team" class="text-center">
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 section-title">
+            <h2>Meet the Team</h2>
+        </div>
+        <div id="row">
+            @if (Model.team != null && Model.team.Count() > 0)
+            {
+            <center>
+                @foreach (var member in Model.team)
+                {
+                <div class="col-md-3 col-sm-6 team">
+                    <div class="thumbnail">
+                        <img src="@member.ImageLocation" style="width:200px;height:200px;" alt="..." class="team-img">
+                        <div class="caption">
+                            <h4>@member.Name</h4>
+                            <p>@member.Email</p>
+                            <p>@member.Position</p>
+                        </div>
+                    </div>
+                </div>
+                }
+            </center>
+            }
+            else
+            {
+                <div class="col-md-3 col-sm-6 team">
+                    <div class="thumbnail">
+                        <img src="~/Images/games/usericon.png" alt="..." class="team-img">
+                        <div class="caption">
+                            <h4>John Doe</h4>
+                            <p>Director</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 team">
+                    <div class="thumbnail">
+                        <img src="~/Images/games/usericon.png" alt="..." class="team-img">
+                        <div class="caption">
+                            <h4>Mike Doe</h4>
+                            <p>Senior Designer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 team">
+                    <div class="thumbnail">
+                        <img src="~/Images/games/usericon.png" alt="..." class="team-img">
+                        <div class="caption">
+                            <h4>Jane Doe</h4>
+                            <p>Senior Designer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 team">
+                    <div class="thumbnail">
+                        <img src="~/Images/games/usericon.png" alt="..." class="team-img">
+                        <div class="caption">
+                            <h4>Karen Doe</h4>
+                            <p>Project Manager</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div id="work-with-us" class="banner-div" style="background: url(@Model.content.WorkWUsBanner);  background-position: center;background-repeat: no-repeat;background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-xs-12 col-md-6">
+             <%#= image_tag 'about.jpg', class: 'img-responsive'%>
+            </div> -->
+            <div class="col-xs-12 col-md-12">
+                <div class="about-text">
+                    <h2 align="center" style="color:white">Work with us</h2>
+                    <p align="center" style="color:white">@Model.content.WorkWUs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="invest-with-us" class="banner-div" style="background: url(@Model.content.InvestWUsBanner);  background-position: center;background-repeat: no-repeat;background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-xs-12 col-md-6">
+             <%#= image_tag 'about.jpg', class: 'img-responsive'%>
+            </div> -->
+            <div class="col-xs-12 col-md-12">
+                <div class="about-text">
+                    <h2 align="center" style="color:white">Invest with us</h2>
+                    <p align="center" style="color:white">@Model.content.InvestWUs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="contact">
+    <div class="container">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="section-title">
+                    <h2>How can we Help you?</h2>
+                    <p>INQUIRE NOW!</p>
+                </div>
+                <form name="sentMessage" id="contactForm" method="post" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" id="names" class="form-control" placeholder="Name" required="required">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" id="email" class="form-control" placeholder="Email" required="required">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <textarea name="message" id="message" class="form-control" rows="4" placeholder="Message" required></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <button type="button" id="submits" class="btn btn-custom btn-lg">Send Message</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-3 col-md-offset-1 contact-info">
+            <div class="contact-item">
+                <h3>Contact Info</h3>
+                <p><span><i class="fa fa-map-marker"></i> Address</span>@Model.content.Address</p>
+            </div>
+            <div class="contact-item">
+                <p><span><i class="fa fa-phone"></i> Phone</span> @Model.content.ContactNumber</p>
+            </div>
+            <div class="contact-item">
+                <p><span><i class="fa fa-envelope-o"></i> Email</span> @Model.content.Email</p>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="social">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        $("#submits").click(function () {
+           var name = $("#names").val();
+            var email = $("#email").val();
+            var message = $("#message").val();
+             $.ajax({
+                type: "GET",
+                url: '@Url.Action("SendEmail","Home")',
+                data: {'name':name,'email':email,'message':message},
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                },
+                error: function () {
+                    //alert("Error while inserting data");
+                }
+            });
+
+        });
+</script>

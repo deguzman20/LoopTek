@@ -1,0 +1,103 @@
+﻿@model WebApplication2.Models.DTO.CategoryViewModel
+
+<style>
+    .project-card {
+    }
+
+    .btn-link {
+        border-color: white;
+        width: 40%;
+        color: white;
+    }
+    .game-banner {
+        @(Model.category.BannerLocation != null?"background-image:url("+ Model.category.BannerLocation + ") !important":"")
+    }
+</style>
+
+<div>
+    <header id="header">
+        <div class="game-banner" style="height:400px;">
+            <div class="overlay">
+                <div class="container">
+                    <div class="row title-service" style="padding-top:100px;padding-bottom:300px;">
+                        <div style="padding-top:70px;" class="col-md-4 title-service">
+                            <div style="background-color:purple;opacity:0.8;margin-left:0px;padding:10px;width:100%">
+                                <h3 style="color:white">
+                                    @Model.category.Name<br />
+                                </h3>
+                                <h5 class="about-text" style="color:white">
+                                    @Model.category.Description
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div style="height:600px;background-color:white;padding:40px;">
+    <div class="col-md-12 form-group">
+        <center><h1 style="font-size:45px;">See our Apps </h1></center>
+    </div>
+    @if (Model.project != null && Model.project.Count() > 0)
+    {
+
+        foreach (var item in Model.project)
+        {
+            <div class="col-md-3">
+                <div class="panel panel-default panel-body project-card" id="@item.ID" style="background-color:black">
+                    <center>
+                        <img src="@item.ImageLink" id="@("as" + item.ID)" style="width:100%;height:300px;" />
+                        <div style="position:absolute;top:40%;left:30%;right:30%">   <a href="/projects/gamepreview?gameid=@item.ID" style="width:100%;display:none" id="@("ps" + item.ID)" class="btn btn-link">View More</a></div>
+
+                    </center>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-md-3">
+            <div class="panel panel-default panel-body project-card" style="background-color:black;height:400px;">
+                <center>
+                    <h4 style="color:white">Cooming Soon!</h4>
+                </center>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default panel-body project-card" style="background-color:black;height:400px;">
+                <center>
+                    <h4 style="color:white">Cooming Soon!</h4>
+                </center>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default panel-body project-card" style="background-color:black;height:400px;">
+                <center>
+                    <h4 style="color:white">Cooming Soon!</h4>
+                </center>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default panel-body project-card" style="background-color:black;height:400px;">
+                <center>
+                    <h4 style="color:white">Cooming Soon!</h4>
+                </center>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.project-card').hover(function () {
+        $('#as' + this.id).css("opacity", "0.1")
+        $('#ps' + this.id).css("display", "inline")
+    });
+    $('.project-card').mouseleave(function () {
+        $('#as' + this.id).css("opacity", "1")
+        $('#as' + this.id).css("visibility", "visible")
+        $('#ps' + this.id).css("display", "none")
+    });
+</script>

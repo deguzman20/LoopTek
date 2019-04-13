@@ -1,0 +1,110 @@
+﻿@model WebApplication2.Models.DTO.ProjectViewModel
+
+@{
+    ViewBag.Title = "EditProject";
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn", @style = "background-color:#303c53;color:white" })
+</div>
+<br/>
+<h2>Edit Project</h2>
+
+@using (Html.BeginForm("EditProject", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }) )
+{
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input type="text" name="projectView.project.ID" value="@Model.project.ID" style="visibility:hidden"/>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.project.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input class="form-control" name="projectView.project.Name" value="@Model.project.Name"/>
+            @Html.ValidationMessageFor(model => model.project.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.project.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input class="form-control" name="projectView.project.Description"  value="@Model.project.Description"/>
+            @Html.ValidationMessageFor(model => model.project.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.project.YoutubeLink, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input class="form-control" name="projectView.project.YoutubeLink"  value="@Model.project.YoutubeLink"/>
+            @Html.ValidationMessageFor(model => model.project.YoutubeLink, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.project.GooglePlayLink, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input class="form-control" name="projectView.project.GooglePlayLink"  value="@Model.project.GooglePlayLink"/>
+            @Html.ValidationMessageFor(model => model.project.GooglePlayLink, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Image or Logo</label>
+        <div class="col-md-10">
+            <img src="@Model.project.ImageLink" width="70px" height="70px" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Change Image or Logo</label>
+        <div class="col-md-10">
+            <input type="file" name="projectView.FileMain" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Service Type</label>
+        <div class="col-md-10">
+            <select name="projectView.project.CategoryID">
+                @foreach (var service in Model.projectservices)
+                {
+                    if (service.Value == Model.project.CategoryID)
+                    {
+                        <option value="@service.Value" selected>@service.Text</option>
+
+                    }
+                    else { 
+                    <option value="@service.Value">@service.Text</option>
+                    }
+                }
+            </select>
+            @*@Html.DropDownListFor("projectView.project.ServiceID", Model.projectservices)*@
+        </div>
+    </div>
+    @*<div class="form-group">
+        <label class="control-label col-md-2">Carousel Images</label>
+        <div class="col-md-10">
+            @if (Model.images != null)
+            {
+                foreach (var service in Model.images)
+                {
+                    <img src="@service.Path" width="50px" height="50px" />
+                }
+                <a href="@Url.Action( "CarouselImages" ,"Admin", new { xid = Model.project.ID })" class="button">Edit Images</a>
+            }
+            else
+            {
+                <p>No Images</p><a href="@Url.Action( "CarouselImages" ,"Admin", new { xid = Model.project.ID })" class="btn">Add</a>
+            }
+        </div>
+    </div>*@
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn" style="background-color:#47b5c2;color:white;position:relative;left:27.5%" />
+        </div>
+    </div>
+</div>
+}
+

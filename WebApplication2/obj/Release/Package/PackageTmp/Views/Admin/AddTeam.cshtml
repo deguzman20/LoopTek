@@ -1,0 +1,55 @@
+﻿@model WebApplication2.Models.DTO.TeamViewModel
+
+@{
+    ViewBag.Title = "AddTeam";
+}
+
+
+@using (Html.BeginForm("AddTeam", "admin", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Add Member</h4>
+       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Name</label>
+            <div class="col-md-10">
+                <input type="text" name="team.per.Name" class="form-control" />
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Picture</label>
+            <div class="col-md-10">
+                <input type="file" name="team.FileMain" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Email</label>
+            <div class="col-md-10">
+                <input type="text" name="team.per.Email" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Position</label>
+            <div class="col-md-10">
+                <input type="text" name="team.per.Position" class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Team")
+</div>

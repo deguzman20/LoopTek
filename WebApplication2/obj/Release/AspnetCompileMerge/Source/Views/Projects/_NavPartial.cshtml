@@ -1,0 +1,8 @@
+﻿@model IEnumerable<WebApplication2.Models.Entities.Category>
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        @foreach (var cat in Model) {
+            <li><a href="/projects/viewapps?catID=@cat.ID" class="page-scroll" style="color:lightgray">@cat.Name</a></li>
+        }
+        </ul>
+</div>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebApplication2.Models.DTO.ProjectViewModel>
+
+@{
+    ViewBag.Title = "ProjectList";
+}
+<style>
+    #table-row > th {
+        color: white;
+    }
+</style>
+<h2>Project List</h2>
+
+<p>
+    @Html.ActionLink("Create Project", "AddProject", null,new { @class = "btn", @style = "background-color:#7698b5;color:white" })
+</p>
+<table class="table table-striped">
+    <tr style="background-color:#7698b5" id="table-row">
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Youtube Link
+        </th>
+        <th>
+            Google Play Link
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Carousel Images
+        </th>
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.project.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.project.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.project.YoutubeLink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.project.GooglePlayLink)
+        </td>
+        <td>
+            <img src="@item.project.ImageLink" width="50px" height="50px"/>
+      
+        </td>
+        <td>
+                @if (item.images != null)
+                {
+                    foreach (var service in item.images)
+                    {
+                        <img src="@service.Path" width="50px" height="50px" />
+                    }
+                    <a href="@Url.Action( "CarouselImages" ,"Admin", new { xid = item.project.ID })" class="button">Edit Images</a>
+                }
+                else
+                {
+                    <p>No Images</p><a href="@Url.Action( "CarouselImages" ,"Admin", new { xid = item.project.ID })" class="btn">Add</a>
+                }
+        </td>
+        <td>
+          <div class="btn-group">
+            @Html.ActionLink("Edit", "EditProject", new { xid=item.project.ID }, new { @class = "btn", @style = "background-color:#303c53;color:white" }) 
+            @Html.ActionLink("Delete", "DeleteProject", new { xid=item.project.ID }, new { @class = "btn", @style = "background-color:#7698b5;color:white" })
+          </div>
+        </td>
+    </tr>
+}
+
+</table>
